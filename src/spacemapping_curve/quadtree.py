@@ -9,7 +9,7 @@ class Quadtree(object):
         self._p = (0, 0, 0)
         self._ws = 100.0  # world size
         self._ml = 4      # max levels
-        self._rn = QuadNode(0, 0, 0, self._ws, 0, 1)
+        # self._rn = QuadNode(0, 0, 0, self._ws, 0, 1)
         self._o = None
         self.leafs = []
     
@@ -53,7 +53,8 @@ class QuadNode(object):
         self._p = (x, y, z)
         self._el = e
         self._l = depth
-        self._branches = None
+        if depth == 0:
+            self.divide_node()
         self.distance = 0.0
         self.orientation = orientation
     

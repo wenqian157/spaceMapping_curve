@@ -14,35 +14,27 @@ class TPMS:
     def __init__(self, x_scale = 1.0, y_scale = 1.0, z_scale = 1.0, height = 0.0, global_scale = 1.0):
 
         if x_scale == None:
-
             self.x_scale = TPMS.X_SCALE
 
         else:
-
             self.x_scale = x_scale
 
         if y_scale == None:
-
             self.y_scale = TPMS.Y_SCALE
 
         else:
-
             self.y_scale = y_scale
 
         if z_scale == None:
-
             self.z_scale = TPMS.Z_SCALE
 
         else:
-
             self.z_scale = z_scale
 
         if height == None:
-
             self.height_scale = TPMS.HEIGHT
 
         else:
-
             self.height = height
 
         if global_scale == None:
@@ -50,11 +42,9 @@ class TPMS:
             self.global_scale = TPMS.GLOBAL_SCALE
 
         else:
-
             self.global_scale = global_scale
 
     def xyz_scale(self, pt):
-
         x_val = pt[0] / self.x_scale
         y_val = pt[1] / self.y_scale
         z_val = (pt[2] - self.height) / self.z_scale
@@ -62,7 +52,6 @@ class TPMS:
         return x_val, y_val, z_val
 
     def try_domain_range(self, count = 20, scale = .1):
-
         angle_list = [i * scale * math.pi for i in range(count)]
 
         values = []
@@ -95,63 +84,41 @@ class HelicoidCatenoid:
     ALFA = 2.0
 
     def __init__(self, x_scale = None, y_scale = None, z_scale = None, height = None, global_scale = None, rho = None, alfa = None):
-
         # super().__init__(x_scale, y_scale, z_scale, height, global_scale)
 
         if x_scale == None:
-
             self.x_scale = TPMS.X_SCALE
-
         else:
-
             self.x_scale = x_scale
 
         if y_scale == None:
-
             self.y_scale = TPMS.Y_SCALE
-
         else:
-
             self.y_scale = y_scale
 
         if z_scale == None:
-
             self.z_scale = TPMS.Z_SCALE
-
         else:
-
             self.z_scale = z_scale
 
         if height == None:
-
             self.height_scale = TPMS.HEIGHT
-
         else:
-
             self.height = height
 
         if global_scale == None:
-
             self.global_scale = TPMS.GLOBAL_SCALE
-
         else:
-
             self.global_scale = global_scale
 
         if rho == None:
-
             self.rho = HelicoidCatenoid.RHO
-
         else:
-
             self.rho = rho
 
         if alfa == None:
-
             self.alfa = HelicoidCatenoid.ALFA
-
         else:
-
             self.alfa = alfa
 
     def xyz_scale(self, pt):
@@ -184,69 +151,45 @@ class PinchShapes:
 
         ###
         if x_scale == None:
-
             self.x_scale = TPMS.X_SCALE
-
         else:
-
             self.x_scale = x_scale
 
         if y_scale == None:
-
             self.y_scale = TPMS.Y_SCALE
-
         else:
-
             self.y_scale = y_scale
 
         if z_scale == None:
-
             self.z_scale = TPMS.Z_SCALE
-
         else:
-
             self.z_scale = z_scale
 
         if height == None:
-
             self.height_scale = TPMS.HEIGHT
-
         else:
-
             self.height = height
 
         if global_scale == None:
-
             self.global_scale = TPMS.GLOBAL_SCALE
-
         else:
-
             self.global_scale = global_scale
 
         ###
 
         if r == None:
-
             self.r = PinchShapes.R
-
         else:
-
             self.r = r
 
         if s == None:
-
             self.s = PinchShapes.S
-
         else:
-
             self.s = s
 
         if t == None:
-
             self.t = PinchShapes.T
-
         else:
-
             self.t = t
 
     def xyz_scale(self, pt):

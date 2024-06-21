@@ -1,4 +1,4 @@
-from spacemapping_curve.quadtree import *
+from quadtree import *
 import rhinoscriptsyntax as rs
 
 def draw_hc(ws, ml, function, return_pts = False):
@@ -6,7 +6,7 @@ def draw_hc(ws, ml, function, return_pts = False):
     tree._ws = ws
     tree._ml = ml
     tree._o = function
-    tree._rn = QuadNode(0, 0, 50, ws, 0, 1)
+    tree._rn = QuadNode(0, 0, 0, ws, 0, 1)
     tree.divide(tree._rn)
     pts = []
 
@@ -22,17 +22,23 @@ def draw_hc(ws, ml, function, return_pts = False):
 
     return pl
 
-def draw_hc_b(ws, ml, function, return_pts = False):
+def draw_hc_b(ws, ml, function, return_pts = False, q_node=None):
     tree = QuadtreeB()
     tree._ws = ws
     tree._ml = ml
     tree._o = function
-    tree._rn = QuadNode(0, 0, 50, ws, 0, 1)
-    tree.divide(tree._rn)
+    if q_node == None:
+        # tree._rn = QuadNode(0, 0, 50, ws, 0, 1)
+        tree.leafs = [QuadNode(0, 0, 0, ws, 0, 0)]
+    elif q_node == "double":
+        tree.leafs = [QuadNode(0, ws * .5, 0, ws, 0, 0), QuadNode(0, ws * -.5, 0, ws, 0, 0)]
+    elif q_node == "sextant":
+        tree.leafs = [QuadNode(0, ws * .5, 0, ws, 0, 0), QuadNode(0, ws * -.5, 0, ws, 0, 0)]
+    # tree.divide(tree._rn)
     pts_all = []
 
     for node in tree.leafs:
-        pts = [b._p for b in node._branches]
+        pts = [b._p for b in node._branches]    
         pts_all.extend(pts)
     
     if not(return_pts):
@@ -42,3 +48,12 @@ def draw_hc_b(ws, ml, function, return_pts = False):
         pl = pts_all
 
     return pl
+
+def draw_hc_b_multiple(ws, ml, function, return_pts = False, m_type = "single"):
+    if m_type == "single":
+        return draw_hc_b(ws, ml, function, return_pts)
+
+    elif m_type == "double":
+        return draw_hc_b(ws, ml, function, return_pts, q_node="double")
+
+        
